@@ -11,8 +11,9 @@ import ArticleDetail from './components/articleDetail'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/:number', component: ArticleDetail },
-  { path: '', component: HomePage },
+  { path: '/articles', component: HomePage },
+  { path: '/articles/:number', component: ArticleDetail },
+  { path: '', redirect: '/articles' },
 ]
 
 const router = new VueRouter({

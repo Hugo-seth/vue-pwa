@@ -27,13 +27,11 @@
         getSingleIssue(number).then(data => {
           //console.log(data)
           this.article = {
-            id: data.id,
             number: data.number,
             created_at: data.created_at,
             title: data.title,
             markdown: data.body,
             html: marked(data.body),
-            html_url: data.html_url,
             comments_url: data.html_url + '#partial-timeline-marker'
           }
         })
@@ -41,7 +39,6 @@
         this.article = articles.filter(item => {
           return item.number === number
         })[0]
-        console.log(this.article)
       }
     }
   }

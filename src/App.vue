@@ -6,17 +6,17 @@
 
 <script>
   import sesStorage from './libs/sessionStorage.js'
-  import {
-    getAllIssues
-  } from './services/issues.js'
+  // import {
+  //   getAllIssues
+  // } from './services/issues.js'
 
   export default {
     name: 'app',
-    created: function() {
-      if (!sesStorage('articles')) {
-        getAllIssues()
-      }
-    }
+    // created: function() {
+    //   if (!sesStorage('articles')) {
+    //     getAllIssues()
+    //   }
+    // }
   }
 </script>
 

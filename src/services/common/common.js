@@ -1,6 +1,5 @@
 import Promise from 'promise'
 import Axios from 'axios'
-import _ from 'lodash'
 
 import config from '../../libs/config.js'
 
@@ -9,7 +8,7 @@ export default function(method, url, params, body) {
   let options = {
     method: method,
     url: config.api + url,
-    params: _.assign(params, { access_token: config.token }),
+    params: Object.assign({}, params, { access_token: config.token }),
     data: body
   }
   return new Promise(function(resolve, reject) {
@@ -28,6 +27,7 @@ export default function(method, url, params, body) {
         } else {
           // Something happened in setting up the request that triggered an Error
           console.log('Error', error.message)
+          reject(error.message)
         }
         //console.log(error.config)
       })
