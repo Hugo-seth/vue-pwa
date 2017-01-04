@@ -12,7 +12,8 @@ export default function(method, url, params, body) {
     data: body
   }
   return new Promise(function(resolve, reject) {
-    Axios(options).then(function(response) {
+    Axios(options)
+      .then(function(response) {
         //console.log(response)
         resolve(response.data)
       })

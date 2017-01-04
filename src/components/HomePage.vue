@@ -1,24 +1,26 @@
 <template>
   <div class="home-page">
     <h1>{{ msg }}</h1>
+    <div v-show="articles.length === 0 && !net_error" class="spinner"></div>
     <ul class="article-list">
       <li v-for="article of articles">
         <router-link :to="'articles/' + article.number.toString()">
           <h2>{{article.title}}</h2>
-          <div v-html="article.summary"></div>
+          <div class="article-summary" v-html="article.summary"></div>
           <p>阅读全文 <span>Posted at {{article.created_at}}</span></p>
         </router-link>
       </li>
     </ul>
     <div v-if="net_error">暂时无法连接服务器，请稍后再来^_^</div>
-    <p>{{totalArticles}}</p>  
-    <div class="page">
-      <router-link :to="{path: 'articles', query: {page: 2}}">下一页</router-link>
+    <div v-if="totalArticles">
+      <pagination :total="totalArticles" :params="params"></pagination>
     </div>
   </div>
 </template>
 
 <script>
+  import Pagination from './pagination'
+
   import marked from 'marked'
   import {
     getIssuesPage,
@@ -26,19 +28,21 @@
   } from '../services/issues.js'
   import sesStorage from '../libs/sessionStorage.js'
 
-  let params = {
-    page: 1,
-    per_page: 2
-  }
-
   export default {
     name: 'home-page',
+    components: {
+      Pagination
+    },
     data: function() {
       return {
         msg: '文章列表',
         articles: [],
         totalArticles: '',
-        net_error: false
+        net_error: false,
+        params: {
+          per_page: 3,
+          page: 1
+        }
       }
     },
     created: function() {
@@ -52,14 +56,14 @@
       getIssues() {
         //console.log(this.$route)
         if (!this.$route.query.page) {
-          params.page = 1
+          this.params.page = 1
         } else {
-          params.page = parseInt(this.$route.query.page, 10)
+          this.params.page = parseInt(this.$route.query.page, 10)
         }
 
         let allArticles = sesStorage('articles')
         if (!allArticles) {
-          getIssuesPage(params).then(data => {
+          getIssuesPage(this.params).then(data => {
             //console.log(data)
             this.articles = data.map(item => {
               return {
@@ -74,12 +78,12 @@
             this.articles.forEach(item => {
               item.summary = reg.exec(item.html)[0]
             })
-          }).catch(err => {
+          }).catch(() => {
             this.net_error = true
           })
           getAllIssues().then(length => this.totalArticles = length)
         } else {
-          this.articles = allArticles.slice((params.page - 1) * params.per_page, params.page * params.per_page)
+          this.articles = allArticles.slice((this.params.page - 1) * this.params.per_page, this.params.page * this.params.per_page)
           this.totalArticles = allArticles.length
         }
       }
@@ -89,7 +93,31 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  a {
-    text-decoration: none;
+  .article-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .spinner {
+    margin: 50px auto;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #1976D2;
+    -webkit-animation: single6 1s infinite ease-in;
+    animation: spinner 1s infinite ease-in;
+  }
+  
+  @keyframes spinner {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
   }
 </style>

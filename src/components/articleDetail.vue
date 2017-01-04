@@ -44,6 +44,10 @@
   }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+  .detail-page {
+    a {
+      color: #1976D2;
+    }
+  }
 </style>

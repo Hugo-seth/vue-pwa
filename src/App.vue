@@ -5,18 +5,8 @@
 </template>
 
 <script>
-  import sesStorage from './libs/sessionStorage.js'
-  // import {
-  //   getAllIssues
-  // } from './services/issues.js'
-
   export default {
-    name: 'app',
-    // created: function() {
-    //   if (!sesStorage('articles')) {
-    //     getAllIssues()
-    //   }
-    // }
+    name: 'app'
   }
 </script>
 
@@ -25,15 +15,27 @@
     outline: 0;
   }
   
+  a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+  
+  a:hover,
+  a:hover a {
+    color: #1976D2;
+  }
+  
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+    width: 650px;
+    margin: 0 auto;
+    padding: 0 15px;
   }
   
   h1 {
-    //font-weight: normal;
     text-align: center;
   }
 </style>
