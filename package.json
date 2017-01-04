@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
+    "build": "node build/build.js && node build/replace.js",
+    "replace": "node build/replace.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
@@ -15,6 +16,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "marked": "^0.3.6",
+    "particles.js": "^2.0.0",
     "promise": "^7.1.1",
     "vue": "^2.1.0",
     "vue-router": "^2.1.1"
@@ -58,6 +60,7 @@
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "phantomjs-prebuilt": "^2.1.3",
+    "replace-in-file": "^2.0.3",
     "sass-loader": "^4.0.2",
     "selenium-server": "2.53.1",
     "semver": "^5.3.0",

@@ -1,16 +1,33 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+  <div>
+    <div id="app" class="app">
+      <div class="header">
+        <h1>Hugo's blog</h1>
+      </div>
+      <div class="content">
+        <router-view></router-view>  
+      </div>              
+    </div>  
+    <div id="particles-js"></div> 
+  </div> 
 </template>
 
 <script>
+  import 'particles.js'
   export default {
-    name: 'app'
+    name: 'app',
+    created: function() {
+      //console.log(document.documentElement.clientWidth)
+      if (document.documentElement.clientWidth > 1000) {
+        particlesJS.load('particles-js', 'static/particles.json', function() {
+          console.log('callback - particles.js config loaded')
+        })
+      }
+    }
   }
 </script>
 
-<style>
+<style lang="scss">
   *:focus {
     outline: 0;
   }
@@ -25,17 +42,47 @@
     color: #1976D2;
   }
   
-  #app {
+  .app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-size: 18px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    width: 650px;
-    margin: 0 auto;
-    padding: 0 15px;
+    line-height: 1.4;
+    margin-bottom: 100px;
+    .header {
+      height: 450px;
+      background: transparent url(assets/bg.png) 0 0 no-repeat;
+      background-size: cover;
+      h1 {
+        margin-top: 0;
+        position: relative;
+        top: 60px;
+        font-size: 2.5em;
+      }
+    }
+    .content {
+      padding: 0 15px;
+    }
   }
   
-  h1 {
+  .particles-js-canvas-el {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -99;
+  }
+  
+  @media (min-width: 850px) {
+    .content {
+      width: 960px;
+      margin: 0 auto;
+    }
+  }
+  
+  h1,
+  h2 {
+    font-size: 1.8em;
     text-align: center;
   }
 </style>

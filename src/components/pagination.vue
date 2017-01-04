@@ -1,12 +1,12 @@
 <template>
   <ul class="pagination">
-    <li :class="{hide: params.page === 1}"><a href="#" v-text="'<'" @click.prevent="goPrevious()"></a></li>
+    <li v-show="params.page !== 1"><a href="#" v-text="'<'" @click.prevent="goPrevious()"></a></li>
     <li v-for="n in pages" :class="{current: params.page === n}">
       <router-link :to="{path: 'articles', query: {page: n}}">
         {{n}}
       </router-link>
     </li>
-    <li :class="{hide: params.page === pages}"><a href="#" v-text="'>'" @click.prevent="goNext()"></a></li>
+    <li v-show="params.page !== pages"><a href="#" v-text="'>'" @click.prevent="goNext()"></a></li>
   </ul>
 </template>
 

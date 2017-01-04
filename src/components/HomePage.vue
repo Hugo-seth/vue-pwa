@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <h1>{{ msg }}</h1>
     <div v-show="articles.length === 0 && !net_error" class="spinner"></div>
     <ul class="article-list">
       <li v-for="article of articles">
@@ -35,7 +34,6 @@
     },
     data: function() {
       return {
-        msg: '文章列表',
         articles: [],
         totalArticles: '',
         net_error: false,
@@ -55,6 +53,7 @@
     methods: {
       getIssues() {
         //console.log(this.$route)
+        window.scrollTo(0, 0)
         if (!this.$route.query.page) {
           this.params.page = 1
         } else {

@@ -1,7 +1,7 @@
 <template>
   <div class="detail-page">
-    <h1>{{article.title}}</h1>
-    <div v-html="article.html"></div>
+    <h2>{{article.title}}</h2>
+    <div class="content" v-html="article.html"></div>
   </div>
 </template>
 
@@ -46,8 +46,24 @@
 
 <style lang="scss">
   .detail-page {
+    .content {
+      background: #fff;
+    }
     a {
       color: #1976D2;
+    }
+    pre,
+    code {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    pre {
+      padding: 15px;
+    }
+    pre>code {
+      background-color: transparent;
+    }
+    img {
+      width: center;
     }
   }
 </style>
