@@ -6,11 +6,11 @@
         <router-link :to="'articles/' + article.number.toString()">
           <h2>{{article.title}}</h2>
           <div class="article-summary" v-html="article.summary"></div>
-          <p>阅读全文 <span class="time">Posted at {{article.created_at | formatDate}}</span></p>
+          <p class="clearfix">阅读全文 <span class="time">Posted at {{article.created_at | formatDate}}</span></p>
         </router-link>
       </li>
     </ul>
-    <div v-if="net_error">暂时无法连接服务器，请稍后再来^_^</div>
+    <div class="error-tip" v-if="net_error">暂时无法连接服务器，请稍后再来^_^</div>
     <div v-if="totalArticles">
       <pagination :total="totalArticles" :params="params"></pagination>
     </div>
@@ -125,5 +125,10 @@
       transform: scale(1);
       opacity: 0;
     }
+  }
+  
+  .error-tip {
+    text-align: center;
+    margin-top: 50px;
   }
 </style>

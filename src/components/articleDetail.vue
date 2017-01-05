@@ -69,8 +69,5 @@
     pre>code {
       background-color: transparent;
     }
-    img {
-      width: center;
-    }
   }
 </style>

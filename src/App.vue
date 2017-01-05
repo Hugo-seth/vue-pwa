@@ -2,7 +2,7 @@
   <div>
     <div id="app" class="app">
       <div class="header">
-        <h1>Hugo's blog</h1>
+        <a href=""><h1>Hugo's blog</h1></a>
       </div>
       <div class="content">
         <router-view></router-view>  
@@ -49,6 +49,11 @@
   
   .clearfix::after {
     clear: both;
+  }
+  
+  img {
+    max-width: 100%;
+    max-height: 100%;
   }
   
   .app {
