@@ -6,7 +6,7 @@
         <router-link :to="'articles/' + article.number.toString()">
           <h2>{{article.title}}</h2>
           <div class="article-summary" v-html="article.summary"></div>
-          <p>阅读全文 <span>Posted at {{article.created_at}}</span></p>
+          <p>阅读全文 <span class="time">Posted at {{article.created_at | formatDate}}</span></p>
         </router-link>
       </li>
     </ul>
@@ -26,6 +26,7 @@
     getAllIssues
   } from '../services/issues.js'
   import sesStorage from '../libs/sessionStorage.js'
+  import formatDate from '../filters/formatDate.js'
 
   export default {
     name: 'home-page',
@@ -95,6 +96,12 @@
   .article-list {
     list-style: none;
     padding-left: 0;
+    li {
+      border-bottom: 1px solid #ddd;
+    }
+    .time {
+      float: right;
+    }
   }
   
   .spinner {

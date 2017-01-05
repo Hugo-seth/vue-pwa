@@ -3,6 +3,10 @@ const options = {
 
   //Single file
   files: 'dist/index.html',
+  files: [
+    'dist/index.html',
+    'dist/static/css/*.css'
+  ],
 
   //Replacement to make (string or regex)
   replace: /\/static/g,

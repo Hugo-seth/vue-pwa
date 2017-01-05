@@ -1,6 +1,7 @@
 <template>
   <div class="detail-page">
     <h2>{{article.title}}</h2>
+    <p class="time">Posted at {{article.created_at | formatDate}}</p> 
     <div class="content" v-html="article.html"></div>
   </div>
 </template>
@@ -11,6 +12,7 @@
   import {
     getSingleIssue
   } from '../services/issues.js'
+  import formatDate from '../filters/formatDate.js'
 
   export default {
     name: 'article-detail',
@@ -20,7 +22,8 @@
       }
     },
     created: function() {
-      //console.log(this.$route)
+      window.scrollTo(0, 0)
+        //console.log(this.$route)
       let number = parseInt(this.$route.params.number, 10)
       let articles = sesStorage('articles')
       if (!articles) {
@@ -41,11 +44,15 @@
         })[0]
       }
     }
+
   }
 </script>
 
 <style lang="scss">
   .detail-page {
+    .time {
+      text-align: right;
+    }
     .content {
       background: #fff;
     }

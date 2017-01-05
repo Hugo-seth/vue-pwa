@@ -42,6 +42,15 @@
     color: #1976D2;
   }
   
+  .clearfix::before {
+    content: ' ';
+    display: table;
+  }
+  
+  .clearfix::after {
+    clear: both;
+  }
+  
   .app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     font-size: 18px;
@@ -49,7 +58,6 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     line-height: 1.4;
-    margin-bottom: 100px;
     .header {
       height: 450px;
       background: transparent url(assets/bg.png) 0 0 no-repeat;
@@ -62,6 +70,7 @@
       }
     }
     .content {
+      margin-bottom: 100px;
       padding: 0 15px;
     }
   }
