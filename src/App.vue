@@ -3,9 +3,24 @@
     <div id="app" class="app">
       <div class="header">
         <a href=""><h1>Hugo's blog</h1></a>
+        <ul class="nav">
+          <li>
+            <a href="//github.com/Hugo-seth" target="_blank">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="//www.zhihu.com/people/shenqihui1992/" target="_blank">
+              <span class="zhihu" aria-hidden="true"></span>
+            </a>
+          </li>
+        </ul>
       </div>
       <div class="content">
         <router-view></router-view>  
+      </div>
+      <div class="footer">
+        <p>Copyright © Hugo's Blog 2017</p>  
       </div>              
     </div>  
     <div id="particles-js"></div> 
@@ -64,19 +79,49 @@
     color: #2c3e50;
     line-height: 1.4;
     .header {
-      height: 450px;
-      background: transparent url(assets/bg.png) 0 0 no-repeat;
-      background-size: cover;
       h1 {
         margin-top: 0;
-        position: relative;
-        top: 60px;
+        padding-top: 20px;
         font-size: 2.5em;
+      }
+      .nav {
+        list-style: none;
+        text-align: center;
+        padding-left: 0;
+        li {
+          display: inline-block;
+          font-size: 60px;
+          position: relative;
+        }
+      }
+      .zhihu {
+        display: inline-block;
+        margin-left: 30px;
+        position: relative;
+        top: -10px;
+        width: 2em;
+        line-height: 2;
+        font-size: 26px;
+        color: #fff;
+        background: #2c3e50;
+        border-radius: 50%;
+        transition: all .1s linear;
+        &:after {
+          content: '知';
+        }
+        &:hover {
+          color: #fff;
+          background: #1976D2;
+        }
       }
     }
     .content {
-      margin-bottom: 100px;
+      margin-bottom: 60px;
       padding: 0 15px;
+    }
+    .footer {
+      text-align: center;
+      margin: 30px 0;
     }
   }
   
@@ -87,7 +132,17 @@
     z-index: -99;
   }
   
-  @media (min-width: 850px) {
+  @media (min-width: 900px) {
+    .app {
+      .header {
+        height: 450px;
+        background: transparent url(assets/bg.png) center 0 no-repeat;
+        background-size: contain;
+        h1 {
+          padding-top: 60px;
+        }
+      }
+    }
     .content {
       width: 960px;
       margin: 0 auto;
