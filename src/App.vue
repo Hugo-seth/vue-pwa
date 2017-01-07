@@ -57,13 +57,8 @@
     color: #1976D2;
   }
   
-  .clearfix::before {
-    content: ' ';
-    display: table;
-  }
-  
-  .clearfix::after {
-    clear: both;
+  .clearfix {
+    overflow: hidden;
   }
   
   img {
@@ -116,7 +111,7 @@
       }
     }
     .content {
-      margin-bottom: 60px;
+      margin-bottom: 80px;
       padding: 0 15px;
     }
     .footer {

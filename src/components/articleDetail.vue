@@ -58,6 +58,9 @@
     }
     a {
       color: #1976D2;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     pre,
     code {
@@ -65,6 +68,10 @@
     }
     pre {
       padding: 15px;
+      overflow-x: auto;
+    }
+    p>code {
+      word-break: break-all;
     }
     pre>code {
       background-color: transparent;

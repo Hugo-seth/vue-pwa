@@ -60,6 +60,9 @@
       color: #1976D2;
       display: inline-block;
       padding: 10px 15px;
+      &:hover {
+        text-decoration: underline;
+      }
     }
     .hide {
       display: none;
@@ -70,6 +73,7 @@
     .current>a,
     .current>a:hover {
       color: #2c3e50;
+      text-decoration: none;
     }
   }
 </style>

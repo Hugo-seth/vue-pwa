@@ -104,6 +104,12 @@
     }
   }
   
+  @media (max-width: 650px) {
+    .article-list .time {
+      float: left;
+    }
+  }
+  
   .spinner {
     margin: 50px auto;
     height: 150px;
