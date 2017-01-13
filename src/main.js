@@ -14,6 +14,7 @@ const routes = [
   { path: '/articles', component: HomePage },
   { path: '/articles/:number', component: ArticleDetail },
   { path: '', redirect: '/articles' },
+  { path: '*', redirect: '/articles' }
 ]
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div id="app" class="app">
+  <div id="app">
+    <div class="app">
       <div class="header">
         <a href=""><h1>Hugo's blog</h1></a>
         <ul class="nav">
@@ -34,7 +34,7 @@
     created: function() {
       //console.log(document.documentElement.clientWidth)
       if (document.documentElement.clientWidth > 1000) {
-        particlesJS.load('particles-js', 'static/particles.json', function() {
+        window.particlesJS.load('particles-js', 'static/particles.json', function() {
           console.log('callback - particles.js config loaded')
         })
       }
