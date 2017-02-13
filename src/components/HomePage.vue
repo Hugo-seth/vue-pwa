@@ -61,31 +61,12 @@
           this.params.page = parseInt(this.$route.query.page, 10)
         }
 
-        let allArticles = sesStorage('articles')
-        if (!allArticles) {
-          getIssuesPage(this.params).then(data => {
-            //console.log(data)
-            this.articles = data.map(item => {
-              return {
-                number: item.number,
-                created_at: item.created_at,
-                title: item.title,
-                markdown: item.body,
-                html: marked(item.body)
-              }
-            })
-            let reg = /^<p>.+<\/p>/i
-            this.articles.forEach(item => {
-              item.summary = reg.exec(item.html)[0]
-            })
-          }).catch(() => {
-            this.net_error = true
-          })
-          getAllIssues().then(length => this.totalArticles = length)
-        } else {
-          this.articles = allArticles.slice((this.params.page - 1) * this.params.per_page, this.params.page * this.params.per_page)
-          this.totalArticles = allArticles.length
-        }
+        getIssuesPage(this.params).then(data => {
+          //console.log(data)
+          this.articles = data
+        }).catch(() => this.net_error = true)
+
+        getAllIssues().then(data => this.totalArticles = data.length)
       }
     }
   }
@@ -108,33 +89,5 @@
     .article-list .time {
       float: left;
     }
-  }
-  
-  .spinner {
-    margin: 50px auto;
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
-    background-color: #1976D2;
-    -webkit-animation: single6 1s infinite ease-in;
-    animation: spinner 1s infinite ease-in;
-  }
-  
-  @keyframes spinner {
-    0% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-      opacity: 0;
-    }
-  }
-  
-  .error-tip {
-    text-align: center;
-    margin-top: 50px;
   }
 </style>

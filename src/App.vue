@@ -149,4 +149,32 @@
     font-size: 1.8em;
     text-align: center;
   }
+  
+  .spinner {
+    margin: 50px auto;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #1976D2;
+    -webkit-animation: single6 1s infinite ease-in;
+    animation: spinner 1s infinite ease-in;
+  }
+  
+  @keyframes spinner {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
+  .error-tip {
+    text-align: center;
+    margin-top: 50px;
+  }
 </style>

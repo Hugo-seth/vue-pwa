@@ -25,24 +25,10 @@
       window.scrollTo(0, 0)
         //console.log(this.$route)
       let number = parseInt(this.$route.params.number, 10)
-      let articles = sesStorage('articles')
-      if (!articles) {
-        getSingleIssue(number).then(data => {
-          //console.log(data)
-          this.article = {
-            number: data.number,
-            created_at: data.created_at,
-            title: data.title,
-            markdown: data.body,
-            html: marked(data.body),
-            comments_url: data.html_url + '#partial-timeline-marker'
-          }
-        })
-      } else {
-        this.article = articles.filter(item => {
-          return item.number === number
-        })[0]
-      }
+
+      getSingleIssue(number).then(data => {
+        this.article = data
+      })
     }
 
   }

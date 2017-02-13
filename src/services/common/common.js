@@ -24,11 +24,11 @@ export default function(method, url, params, body) {
           //console.log(error.response.data)
           //console.log(error.response.headers)
           console.log(error.response.status)
-          reject(error.response.status)
+          reject(error.response.status.toString())
         } else {
           // Something happened in setting up the request that triggered an Error
           console.log('Error', error.message)
-          reject(error.message)
+          reject(error.message.toString())
         }
         //console.log(error.config)
       })
