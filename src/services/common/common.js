@@ -14,8 +14,12 @@ export default function(method, url, params, body) {
   return new Promise(function(resolve, reject) {
     Axios(options)
       .then(function(response) {
-        //console.log(response)
-        resolve(response.data)
+        // console.log(response)
+        if (response.status === 200) {
+          resolve(response.data)
+        } else {
+          reject(response.statusText.toString())
+        }  
       })
       .catch(function(error) {
         if (error.response) {

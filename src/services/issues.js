@@ -11,20 +11,8 @@ function getIssuesPage(params) {
     let allArticles = sesStorage('articles')
     if (!allArticles) {
       http('get', baseUrl, params).then(data => {
-        //console.log(data)
-        let _data = data.map(item => {
-          return {
-            number: item.number,
-            created_at: item.created_at,
-            title: item.title,
-            markdown: item.body,
-            html: marked(item.body)
-          }
-        })
-        let reg = /^<p>.+<\/p>/i
-        _data.forEach(item => {
-          item.summary = reg.exec(item.html)[0]
-        })
+        // console.log(data)
+        let _data = _invertData(data)
         resolve(_data)
       }).catch((error) => {
         reject(error)
@@ -43,20 +31,13 @@ function getSingleIssue(number) {
     if (!allArticles) {
       http('get', url).then(data => {
         //console.log(data)
-        let _data = {
-          number: data.number,
-          created_at: data.created_at,
-          title: data.title,
-          markdown: data.body,
-          html: marked(data.body),
-          comments_url: data.html_url + '#partial-timeline-marker'
-        }
+        let _data = _invertData([data])[0]
         resolve(_data)
       }).catch((error) => {
         reject(error)
       })
 
-      setTimeout(getAllIssues, 500) // pre load
+      setTimeout(getAllIssues, 500) // pre fetch
     } else {
       let _data = allArticles.filter(item => {
         return item.number === number
@@ -75,22 +56,7 @@ function getAllIssues() {
       http('get', baseUrl).then(data => {
         //console.log(data)
         resolve(data)
-        let articles = data.map(item => {
-          return {
-            id: item.id,
-            number: item.number,
-            created_at: item.created_at,
-            title: item.title,
-            markdown: item.body,
-            html: marked(item.body),
-            html_url: item.html_url,
-            comments_url: item.html_url + '#partial-timeline-marker'
-          }
-        })
-        let reg = /^<p>.+<\/p>/i
-        articles.forEach(item => {
-          item.summary = reg.exec(item.html)[0]
-        })
+        let articles = _invertData(data)
         sesStorage('articles', articles)
           // console.log(sesStorage('articles'))
       }).catch((error) => {
@@ -98,6 +64,28 @@ function getAllIssues() {
       })
     }
   })
+}
+
+function _invertData(arr) {
+  let articles = arr.map(item => {
+    return {
+      id: item.id,
+      number: item.number,
+      created_at: item.created_at,
+      title: item.title,
+      markdown: item.body,
+      html: marked(item.body),
+      html_url: item.html_url,
+      comments_url: item.html_url + '#partial-timeline-marker'
+    }
+  })
+  let reg = /<p>.+<\/p>/
+  articles.forEach(item => {
+    let result = reg.exec(item.html)
+    item.summary = result ? result[0] : null
+  })
+
+  return articles
 }
 
 export { getIssuesPage, getSingleIssue, getAllIssues }

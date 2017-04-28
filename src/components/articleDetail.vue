@@ -7,8 +7,6 @@
 </template>
 
 <script>
-  import marked from 'marked'
-  import sesStorage from '../libs/sessionStorage.js'
   import {
     getSingleIssue
   } from '../services/issues.js'
@@ -46,6 +44,15 @@
       color: #1976D2;
       &:hover {
         text-decoration: underline;
+      }
+    }
+    blockquote {
+      margin: 0;
+      padding: 5px 10px;
+      border-left: 2px solid #1976D2;
+      p {
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
     pre,

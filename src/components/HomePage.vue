@@ -19,13 +19,10 @@
 
 <script>
   import Pagination from './pagination'
-
-  import marked from 'marked'
   import {
     getIssuesPage,
     getAllIssues
   } from '../services/issues.js'
-  import sesStorage from '../libs/sessionStorage.js'
   import formatDate from '../filters/formatDate.js'
 
   export default {
@@ -62,7 +59,7 @@
         }
 
         getIssuesPage(this.params).then(data => {
-          //console.log(data)
+          // console.log(data)
           this.articles = data
         }).catch(() => this.net_error = true)
 
