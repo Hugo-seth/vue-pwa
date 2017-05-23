@@ -43,10 +43,6 @@
 </script>
 
 <style lang="scss">
-  *:focus {
-    outline: 0;
-  }
-  
   a {
     color: #2c3e50;
     text-decoration: none;
@@ -156,7 +152,6 @@
     width: 150px;
     border-radius: 50%;
     background-color: #1976D2;
-    -webkit-animation: single6 1s infinite ease-in;
     animation: spinner 1s infinite ease-in;
   }
   

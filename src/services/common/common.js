@@ -8,7 +8,7 @@ export default function(method, url, params, body) {
   let options = {
     method: method,
     url: config.api + url,
-    params: Object.assign({}, params, { access_token: config.token }),
+    params: Object.assign({}, params, { access_token: config.token }),// 
     data: body
   }
   return new Promise(function(resolve, reject) {

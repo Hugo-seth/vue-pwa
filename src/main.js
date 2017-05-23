@@ -5,14 +5,18 @@ import VueRouter from 'vue-router'
 
 import App from './App'
 import HomePage from './components/HomePage'
-import ArticleDetail from './components/articleDetail'
 
 /* eslint-disable no-new */
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/articles', component: HomePage },
-  { path: '/articles/:number', component: ArticleDetail },
+  {
+    path: '/articles/:number',
+    component: function(resolve) {
+      require(['./components/articleDetail'], resolve)
+    }
+  },
   { path: '', redirect: '/articles' },
   { path: '*', redirect: '/articles' }
 ]
