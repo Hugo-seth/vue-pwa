@@ -2,7 +2,7 @@
   <div class="home-page">
     <div v-show="articles.length === 0 && !net_error" class="spinner"></div>
     <ul class="article-list">
-      <li v-for="article of articles">
+      <li v-for="article of articles" :key="article.id">
         <router-link :to="'articles/' + article.number.toString()">
           <h2>{{article.title}}</h2>
           <div class="article-summary" v-html="article.summary"></div>
@@ -18,73 +18,72 @@
 </template>
 
 <script>
-  import Pagination from './pagination'
-  import {
-    getIssuesPage,
-    getAllIssues
-  } from '../services/issues.js'
-  import formatDate from '../filters/formatDate.js'
+import Pagination from './pagination'
+import { getIssuesPage, getAllIssues } from '../services/issues.js'
+import formatDate from '../filters/formatDate.js'
 
-  export default {
-    name: 'home-page',
-    components: {
-      Pagination
-    },
-    data: function() {
-      return {
-        articles: [],
-        totalArticles: '',
-        net_error: false,
-        params: {
-          per_page: 3,
-          page: 1
-        }
-      }
-    },
-    created: function() {
-      this.getIssues()
-    },
-    watch: {
-      // 如果路由有变化，会再次执行该方法
-      '$route': 'getIssues'
-    },
-    methods: {
-      getIssues() {
-        //console.log(this.$route)
-        window.scrollTo(0, 0)
-        if (!this.$route.query.page) {
-          this.params.page = 1
-        } else {
-          this.params.page = parseInt(this.$route.query.page, 10)
-        }
-
-        getIssuesPage(this.params).then(data => {
-          // console.log(data)
-          this.articles = data
-        }).catch(() => this.net_error = true)
-
-        getAllIssues().then(data => this.totalArticles = data.length)
+export default {
+  name: 'home-page',
+  components: {
+    Pagination
+  },
+  data: function() {
+    return {
+      articles: [],
+      totalArticles: '',
+      net_error: false,
+      params: {
+        per_page: 3,
+        page: 1
       }
     }
+  },
+  created: function() {
+    this.getIssues()
+  },
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    $route: 'getIssues'
+  },
+  methods: {
+    getIssues() {
+      // console.log(this.$route)
+      window.scrollTo(0, 0)
+      if (!this.$route.query.page) {
+        this.params.page = 1
+      } else {
+        this.params.page = parseInt(this.$route.query.page, 10)
+      }
+
+      getIssuesPage(this.params)
+        .then(data => {
+          // console.log(data)
+          this.articles = data
+        })
+        .catch(() => (this.net_error = true))
+
+      getAllIssues().then(data => (this.totalArticles = data.length))
+    }
   }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-  .article-list {
-    list-style: none;
-    padding-left: 0;
-    li {
-      border-bottom: 1px solid #ddd;
-    }
-    .time {
-      float: right;
-    }
+<style lang="less" scoped>
+.article-list {
+  list-style: none;
+  padding-left: 0;
+  li {
+    border-bottom: 1px solid #ddd;
   }
-  
-  @media (max-width: 650px) {
-    .article-list .time {
-      float: left;
-    }
+  .time {
+    float: right;
   }
+}
+
+@media (max-width: 650px) {
+  .article-list .time {
+    float: left;
+  }
+}
 </style>

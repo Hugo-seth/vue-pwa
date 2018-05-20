@@ -32,7 +32,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="less">
   .detail-page {
     .time {
       text-align: right;

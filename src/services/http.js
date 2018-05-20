@@ -1,14 +1,13 @@
 import Promise from 'promise'
 import Axios from 'axios'
 
-import config from '../../libs/config.js'
+import config from '../config'
 
 export default function(method, url, params, body) {
-
   let options = {
     method: method,
     url: config.api + url,
-    params: Object.assign({}, params, { access_token: config.token }),// 
+    params: Object.assign({}, params, { access_token: config.token }),
     data: body
   }
   return new Promise(function(resolve, reject) {
@@ -19,7 +18,7 @@ export default function(method, url, params, body) {
           resolve(response.data)
         } else {
           reject(response.statusText.toString())
-        }  
+        }
       })
       .catch(function(error) {
         if (error.response) {
