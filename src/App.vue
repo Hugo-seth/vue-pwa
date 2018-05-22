@@ -34,13 +34,7 @@ export default {
   created: function() {
     //console.log(document.documentElement.clientWidth)
     if (document.documentElement.clientWidth > 1000) {
-      window.particlesJS.load(
-        'particles-js',
-        '/particles.json',
-        function() {
-          console.log('callback - particles.js config loaded')
-        }
-      )
+      window.particlesJS.load('particles-js', '/particles.json')
     }
   }
 }
