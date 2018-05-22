@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "blog-pwa",
   "version": "1.0.0",
   "description": "My github blog",
   "author": "Hugo.s <351531396@qq.com>",
@@ -22,7 +22,8 @@
     "@vue/cli-service": "^3.0.0-beta.10",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.5.13",
+    "workbox-webpack-plugin": "^3.2.0"
   },
   "browserslist": [
     "> 1%",
