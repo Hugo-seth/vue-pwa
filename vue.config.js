@@ -1,5 +1,5 @@
 const workboxConfig = {
-  // importWorkboxFrom: 'local',
+  importWorkboxFrom: 'local',
   skipWaiting: true,
   clientsClaim: true,
   runtimeCaching: [
@@ -22,11 +22,6 @@ const workboxConfig = {
       options: {
         // Fall back to the cache after 2 seconds.
         networkTimeoutSeconds: 2,
-        // Configure custom cache expiration.
-        // expiration: {
-        //   maxEntries: 5,
-        //   maxAgeSeconds: 60
-        // },
         cacheableResponse: {
           statuses: [200, 304]
         }
