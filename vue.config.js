@@ -11,7 +11,7 @@ const workboxConfig = {
       options: {
         // Configure which responses are considered cacheable.
         cacheableResponse: {
-          statuses: [200, 304]
+          statuses: [200]
         }
       }
     },
@@ -23,7 +23,7 @@ const workboxConfig = {
         // Fall back to the cache after 2 seconds.
         networkTimeoutSeconds: 2,
         cacheableResponse: {
-          statuses: [200, 304]
+          statuses: [200]
         }
       }
     }
