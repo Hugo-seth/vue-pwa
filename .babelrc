@@ -1,5 +1,9 @@
 {
   "presets": [
-    "@vue/app"
+    ["env", { "modules": false }],
+    "stage-2"
+  ],
+  "plugins": [
+    "syntax-dynamic-import"
   ]
 }

@@ -28,13 +28,11 @@
 </template>
 
 <script>
-import 'particles.js'
 export default {
   name: 'app',
-  created: function() {
-    //console.log(document.documentElement.clientWidth)
+  beforeMount: function() {
     if (document.documentElement.clientWidth > 1000) {
-      window.particlesJS.load('particles-js', '/particles.json')
+      window.particlesJS.load('particles-js', '/public/particles.json')
     }
   }
 }
@@ -87,7 +85,7 @@ img {
       display: inline-block;
       margin-left: 30px;
       position: relative;
-      top: -10px;
+      top: -12px;
       width: 2em;
       line-height: 2;
       font-size: 26px;

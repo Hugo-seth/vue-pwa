@@ -1,12 +1,12 @@
 <template>
   <ul class="pagination">
-    <li v-show="params.page !== 1"><a href="#" v-text="'<'" @click.prevent="goPrevious()"></a></li>
-    <li v-for="n in pages" :key="n" :class="{current: params.page === n}">
-      <router-link :to="{path: 'articles', query: {page: n}}">
+    <li v-show="page !== 1"><a href="#" v-text="'<'" @click.prevent="goPrevious()"></a></li>
+    <li v-for="n in pages" :key="n" :class="{current: page === n}">
+      <router-link :to="{path: '/articles', query: {page: n}}">
         {{n}}
       </router-link>
     </li>
-    <li v-show="params.page !== pages"><a href="#" v-text="'>'" @click.prevent="goNext()"></a></li>
+    <li v-show="page !== pages"><a href="#" v-text="'>'" @click.prevent="goNext()"></a></li>
   </ul>
 </template>
 
@@ -14,24 +14,21 @@
 export default {
   name: 'pagination',
   props: {
-    total: Number,
-    params: Object
+    count: Number,
+    page: Number,
+    size: Number
   },
-  data: function() {
-    return {
-      pages: 1
+  computed: {
+    pages() {
+      return Math.ceil(this.count / this.size)
     }
-  },
-  created: function() {
-    this.pages = Math.ceil(this.total / this.params.per_page)
   },
   methods: {
     goPrevious() {
-      //console.log(this)
       this.$router.push({
         path: 'articles',
         query: {
-          page: this.params.page - 1
+          page: this.page - 1
         }
       })
     },
@@ -39,7 +36,7 @@ export default {
       this.$router.push({
         path: 'articles',
         query: {
-          page: this.params.page + 1
+          page: this.page + 1
         }
       })
     }

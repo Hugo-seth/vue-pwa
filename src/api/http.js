@@ -1,4 +1,3 @@
-import Promise from 'promise'
 import Axios from 'axios'
 
 import config from '../config'
@@ -17,6 +16,7 @@ export default function(method, url, params, body) {
         if (response.status === 200) {
           resolve(response.data)
         } else {
+          console.log(response.statusText)
           reject(response.statusText.toString())
         }
       })
