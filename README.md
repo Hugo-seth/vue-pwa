@@ -5,7 +5,7 @@
 yarn
 
 # serve with hot reload at localhost:8080
-yarn serve
+yarn dev
 
 # build for production with minification
 yarn build
