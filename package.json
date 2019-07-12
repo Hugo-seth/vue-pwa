@@ -9,7 +9,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "marked": "^0.3.19",
     "particles.js": "^2.0.0",
     "vue": "^2.5.16",
